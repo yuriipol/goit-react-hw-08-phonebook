@@ -1,0 +1,31 @@
+.list {
+  width: 600px;
+}
+.phoneBookListItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: aquamarine;
+}
+.nameText,
+.phoneNumber {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.buttonDelete {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  background-color: gray;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.buttonDelete:hover,
+.buttonDelete:focus {
+  background-color: red;
+}
