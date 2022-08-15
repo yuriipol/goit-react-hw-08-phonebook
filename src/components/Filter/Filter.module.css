@@ -1,0 +1,15 @@
+.filter {
+  width: 600px;
+  padding: 20px;
+  background-color: aquamarine;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.title {
+  text-align: center;
+}

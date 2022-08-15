@@ -55,7 +55,7 @@ class App extends Component {
     return (
       <>
         <Form onSubmit={this.formSubmitHendler} />
-        <h1>Contacts:</h1>
+        
         <Filter value={filter} onChange={this.changeFilter} />
         <PhoneBookList
           phoneList={filteredPhoneBookList}

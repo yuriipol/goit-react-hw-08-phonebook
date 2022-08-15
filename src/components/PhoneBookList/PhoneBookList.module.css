@@ -1,9 +1,13 @@
 .list {
   width: 600px;
+  background-color: aquamarine;
+  padding: 20px;
+  margin: 0;
 }
 .phoneBookListItem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
   border: 1px solid gray;
   border-radius: 5px;
