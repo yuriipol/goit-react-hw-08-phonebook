@@ -17,11 +17,15 @@ class App extends Component {
   };
   formSubmitHendler = data => {
     // console.log(data);
+    const { phoneList } = this.state;
     const phoneBookListItem = {
       id: nanoid(),
       name: data.name,
       number: data.number,
     };
+    if (phoneList.find(item => item.name === phoneBookListItem.name)) {
+      return alert(`${phoneBookListItem.name}  is olrady in contacts`);
+    }
     this.setState(prevState => ({
       phoneList: [phoneBookListItem, ...prevState.phoneList],
     }));
@@ -55,7 +59,7 @@ class App extends Component {
     return (
       <>
         <Form onSubmit={this.formSubmitHendler} />
-        
+
         <Filter value={filter} onChange={this.changeFilter} />
         <PhoneBookList
           phoneList={filteredPhoneBookList}

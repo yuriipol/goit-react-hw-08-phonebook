@@ -1,6 +1,8 @@
 import s from './PhoneBookList.module.css';
+import PropTypes from 'prop-types';
 
 const PhoneBookList = ({ phoneList, onDeletePhoneListItem }) => {
+  console.log(onDeletePhoneListItem);
   return (
     <ul className={s.list}>
       {phoneList.map(({ id, name, number }) => (
@@ -20,3 +22,14 @@ const PhoneBookList = ({ phoneList, onDeletePhoneListItem }) => {
 };
 
 export default PhoneBookList;
+
+PhoneBookList.propTypes = {
+  phoneList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  onDeletePhoneListItem: PropTypes.func,
+};
