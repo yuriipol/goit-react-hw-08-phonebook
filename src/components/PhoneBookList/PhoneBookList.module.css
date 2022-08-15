@@ -3,6 +3,8 @@
   background-color: aquamarine;
   padding: 20px;
   margin: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 .phoneBookListItem {
   display: flex;
