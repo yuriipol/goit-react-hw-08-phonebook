@@ -50,6 +50,20 @@ class App extends Component {
       item.name.toLowerCase().includes(normalizedFilter)
     );
   };
+  componentDidMount() {
+    const phoneList = localStorage.getItem('phoneList');
+    const parsePhoneList = JSON.parse(phoneList);
+    if (parsePhoneList) {
+      this.setState({
+        phoneList: parsePhoneList,
+      });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.phoneList !== prevState.phoneList) {
+      localStorage.setItem('phoneList', JSON.stringify(this.state.phoneList));
+    }
+  }
 
   render() {
     const { filter } = this.state;
