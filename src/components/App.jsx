@@ -35,9 +35,11 @@ function App() {
       phoneList.filter(phoneListItem => phoneListItem.id !== phoneListId)
     );
   };
+
   const changeFilter = event => {
     setFilter(event.currentTarget.value);
   };
+
   const getVisibleFilter = () => {
     const normalizedFilter = filter.toLowerCase();
 
@@ -47,6 +49,7 @@ function App() {
   };
 
   useEffect(() => {
+    // console.log('Записываем в локалСтораже');
     localStorage.setItem('phoneList', JSON.stringify(phoneList));
   }, [phoneList]);
 

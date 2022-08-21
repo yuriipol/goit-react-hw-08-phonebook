@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 function Form({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // state = { name: '', number: '' };
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
+
   const hendleInputChange = event => {
     const { name, value } = event.currentTarget;
 
@@ -25,10 +25,12 @@ function Form({ onSubmit }) {
         return;
     }
   };
+
   const hendleSubmit = event => {
     event.preventDefault();
 
     onSubmit(name, number);
+
     resetForm();
   };
 
