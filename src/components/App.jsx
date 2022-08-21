@@ -1,86 +1,68 @@
-import React from 'react';
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
+// import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import PhoneBookList from './PhoneBookList';
 import Form from './Form';
 import Filter from './Filter';
 
-class App extends Component {
-  state = {
-    phoneList: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
-    filter: '',
-  };
-  formSubmitHendler = data => {
-    // console.log(data);
-    const { phoneList } = this.state;
+function App() {
+  const [phoneList, setPhoneList] = useState(() => {
+    return (
+      JSON.parse(localStorage.getItem('phoneList')) ?? [
+        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      ]
+    );
+  });
+  const [filter, setFilter] = useState('');
+
+  const formSubmitHendler = (name, number) => {
     const phoneBookListItem = {
       id: nanoid(),
-      name: data.name,
-      number: data.number,
+      name: name,
+      number: number,
     };
     if (phoneList.find(item => item.name === phoneBookListItem.name)) {
       return alert(`${phoneBookListItem.name}  is olrady in contacts`);
     }
-    this.setState(prevState => ({
-      phoneList: [phoneBookListItem, ...prevState.phoneList],
-    }));
+    setPhoneList([phoneBookListItem, ...phoneList]);
   };
 
-  deletePhoneListItem = phoneListId => {
-    this.setState(prevState => ({
-      phoneList: prevState.phoneList.filter(
-        phoneListItem => phoneListItem.id !== phoneListId
-      ),
-    }));
+  const deletePhoneListItem = phoneListId => {
+    setPhoneList(
+      phoneList.filter(phoneListItem => phoneListItem.id !== phoneListId)
+    );
   };
-  changeFilter = event => {
-    this.setState({ filter: event.currentTarget.value });
+  const changeFilter = event => {
+    setFilter(event.currentTarget.value);
   };
-  getVisibleFilter = () => {
-    const { phoneList, filter } = this.state;
-
+  const getVisibleFilter = () => {
     const normalizedFilter = filter.toLowerCase();
 
     return phoneList.filter(item =>
       item.name.toLowerCase().includes(normalizedFilter)
     );
   };
-  componentDidMount() {
-    const phoneList = localStorage.getItem('phoneList');
-    const parsePhoneList = JSON.parse(phoneList);
-    if (parsePhoneList) {
-      this.setState({
-        phoneList: parsePhoneList,
-      });
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.phoneList !== prevState.phoneList) {
-      localStorage.setItem('phoneList', JSON.stringify(this.state.phoneList));
-    }
-  }
 
-  render() {
-    const { filter } = this.state;
+  useEffect(() => {
+    localStorage.setItem('phoneList', JSON.stringify(phoneList));
+  }, [phoneList]);
 
-    const filteredPhoneBookList = this.getVisibleFilter();
+  const filteredPhoneBookList = getVisibleFilter();
 
-    return (
-      <>
-        <Form onSubmit={this.formSubmitHendler} />
+  return (
+    <>
+      <Form onSubmit={formSubmitHendler} />
 
-        <Filter value={filter} onChange={this.changeFilter} />
-        <PhoneBookList
-          phoneList={filteredPhoneBookList}
-          onDeletePhoneListItem={this.deletePhoneListItem}
-        />
-      </>
-    );
-  }
+      <Filter value={filter} onChange={changeFilter} />
+      <PhoneBookList
+        phoneList={filteredPhoneBookList}
+        onDeletePhoneListItem={deletePhoneListItem}
+      />
+    </>
+  );
 }
+
 export default App;
