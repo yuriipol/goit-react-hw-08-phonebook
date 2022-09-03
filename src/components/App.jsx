@@ -15,7 +15,7 @@ function App() {
     );
     return filteredContact;
   });
-  // console.log(phoneList);
+  console.log(phoneList);
   const dispatch = useDispatch();
 
   const onAddContact = data => {
