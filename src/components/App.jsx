@@ -8,6 +8,7 @@ import { addContact, delContact } from '../redux/phone-book-actions';
 
 function App() {
   const [filter, setFilter] = useState('');
+  const Arr = useSelector(store => store);
 
   const phoneList = useSelector(store => {
     const filteredContact = store.filter(item =>
@@ -19,6 +20,10 @@ function App() {
   const dispatch = useDispatch();
 
   const onAddContact = data => {
+    const { name, number } = data;
+    if (Arr.find(item => item.name === name || item.number === number)) {
+      return alert('vsem pizdec');
+    }
     const action = addContact(data);
     dispatch(action);
   };
