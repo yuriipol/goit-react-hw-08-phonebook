@@ -28,8 +28,12 @@ function Form({ onSubmit }) {
 
   const hendleSubmit = event => {
     event.preventDefault();
+    const data = {
+      name,
+      number,
+    };
 
-    onSubmit(name, number);
+    onSubmit(data);
 
     resetForm();
   };
