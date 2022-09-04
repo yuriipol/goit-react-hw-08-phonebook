@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { ADD_CONTACT, DEL_CONTACT } from './phone-book-types';
+import { ADD_CONTACT, DEL_CONTACT, ADD_FILTER } from './phone-book-types';
 
 export const addContact = payload => {
   return {
@@ -14,6 +14,12 @@ export const delContact = payload => {
   };
 };
 
+export const addFilter = payload => {
+  return {
+    type: ADD_FILTER,
+    payload,
+  };
+};
 // import { createAction } from '@reduxjs/toolkit';
 // import { nanoid } from 'nanoid';
 

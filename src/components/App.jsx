@@ -11,17 +11,18 @@ function App() {
   const Arr = useSelector(store => store);
 
   const phoneList = useSelector(store => {
-    const filteredContact = store.filter(item =>
+    console.log(store);
+    const filteredContact = store.items.filter(item =>
       item.name.toLowerCase().includes(filter.toLocaleLowerCase())
     );
     return filteredContact;
   });
-  console.log(phoneList);
+  // console.log(phoneList);
   const dispatch = useDispatch();
 
   const onAddContact = data => {
     const { name, number } = data;
-    if (Arr.find(item => item.name === name || item.number === number)) {
+    if (Arr.items.find(item => item.name === name || item.number === number)) {
       return alert('vsem pizdec');
     }
     const action = addContact(data);

@@ -2,6 +2,7 @@ import s from './PhoneBookList.module.css';
 import PropTypes from 'prop-types';
 
 const PhoneBookList = ({ phoneList, onDeletePhoneListItem }) => {
+  // console.log(phoneList);
   return (
     <ul className={s.list}>
       {phoneList.map(({ id, name, number }) => (
