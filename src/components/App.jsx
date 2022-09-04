@@ -30,7 +30,7 @@ function App() {
     if (
       ArrContacts.find(item => item.name === name || item.number === number)
     ) {
-      return alert(`Такое имя ${name} или номер ${number} есть в контактах`);
+      return alert(`Такое имя ${name} или номер ${number} есть в контактах!`);
     }
     const action = addContact(data);
     dispatch(action);
