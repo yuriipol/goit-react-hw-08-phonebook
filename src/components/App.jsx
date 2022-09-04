@@ -1,29 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import PhoneBookList from './PhoneBookList';
 import Form from './Form';
 import Filter from './Filter';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, delContact } from '../redux/phone-book-actions';
+import {
+  addContact,
+  delContact,
+} from '../redux/items/phone-book-items-actions';
+import { addFilter } from 'redux/filter/phoneBookFilter-actions';
+import { getContacts } from '../redux/items/phone-book-items-selector';
+import { getFilter } from '../redux/filter/phoneBookFilter-selector';
 
 function App() {
-  const [filter, setFilter] = useState('');
-  const Arr = useSelector(store => store);
+  const ArrContacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+
+  const dispatch = useDispatch();
 
   const phoneList = useSelector(store => {
-    console.log(store);
     const filteredContact = store.items.filter(item =>
-      item.name.toLowerCase().includes(filter.toLocaleLowerCase())
+      item.name.toLowerCase().includes(store.filter.toLocaleLowerCase())
     );
     return filteredContact;
   });
-  // console.log(phoneList);
-  const dispatch = useDispatch();
 
   const onAddContact = data => {
     const { name, number } = data;
-    if (Arr.items.find(item => item.name === name || item.number === number)) {
-      return alert('vsem pizdec');
+    if (
+      ArrContacts.find(item => item.name === name || item.number === number)
+    ) {
+      return alert(`Такое имя ${name} или номер ${number} есть в контактах`);
     }
     const action = addContact(data);
     dispatch(action);
@@ -32,59 +39,21 @@ function App() {
     const action = delContact(id);
     dispatch(action);
   };
-  // const [phoneList, setPhoneList] = useState(() => {
-  //   return (
-  //     JSON.parse(localStorage.getItem('phoneList')) ?? [
-  //       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  //       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  //       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  //       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  //     ]
-  //   );
-  // });
 
-  // const formSubmitHendler = (name, number) => {
-  //   const phoneBookListItem = {
-  //     id: nanoid(),
-  //     name: name,
-  //     number: number,
-  //   };
-  //   if (phoneList.find(item => item.name === phoneBookListItem.name)) {
-  //     return alert(`${phoneBookListItem.name}  is olrady in contacts`);
-  //   }
-  //   setPhoneList([phoneBookListItem, ...phoneList]);
-  // };
-
-  // const deletePhoneListItem = phoneListId => {
-  //   setPhoneList(
-  //     phoneList.filter(phoneListItem => phoneListItem.id !== phoneListId)
-  //   );
-  // };
-
-  const changeFilter = event => {
-    setFilter(event.currentTarget.value);
+  const onChangeFilter = event => {
+    const action = addFilter(event.currentTarget.value);
+    dispatch(action);
   };
 
-  // const getVisibleFilter = () => {
-  //   const normalizedFilter = filter.toLowerCase();
-
-  //   return phoneList.filter(item =>
-  //     item.name.toLowerCase().includes(normalizedFilter)
-  //   );
-  // };
-
   useEffect(() => {
-    // console.log('Записываем в локалСтораже');
     localStorage.setItem('phoneList', JSON.stringify(phoneList));
   }, [phoneList]);
-
-  // const filteredPhoneBookList = getVisibleFilter();
 
   return (
     <>
       <Form onSubmit={onAddContact} />
 
-      <Filter value={filter} onChange={changeFilter} />
+      <Filter value={filter} onChange={onChangeFilter} />
       <PhoneBookList
         phoneList={phoneList}
         onDeletePhoneListItem={onDelContact}
