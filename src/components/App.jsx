@@ -14,7 +14,7 @@ import { getContactsList } from '../redux/items/phone-book-items-selector';
 import { getFilter } from '../redux/filter/phoneBookFilter-selector';
 
 function App() {
-  const { items, loading, error } = useSelector(getContactsList);
+  const { loading } = useSelector(getContactsList);
   // console.log(ArrContacts);
   const filter = useSelector(getFilter);
 
