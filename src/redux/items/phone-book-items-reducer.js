@@ -1,37 +1,43 @@
-// import { ADD_CONTACT, DEL_CONTACT } from './phone-book-items-types';
-import { createReducer } from '@reduxjs/toolkit';
-import { addContact, delContact } from './phone-book-items-actions';
+import { createReducer, combineReducers } from '@reduxjs/toolkit';
 
-// const initialStore = JSON.parse(localStorage.getItem('phoneList')) ?? [
-//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-// ];
+import * as actions from './phone-book-items-actions';
 
-const itemsReducer = createReducer(
-  JSON.parse(localStorage.getItem('phoneList')) ?? [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ],
-  {
-    [addContact]: (store, { _, payload }) => [payload, ...store],
-    [delContact]: (store, { _, payload }) =>
-      store.filter(item => item.id !== payload),
-  }
-);
-export default itemsReducer;
+const itemsReducer = createReducer([], {
+  [actions.fetchContactsSucces]: (_, { payload }) => payload,
+});
+const loadingReducer = createReducer(false, {
+  [actions.fetchContactsRequest]: () => true,
+  [actions.fetchContactsSucces]: () => false,
+  [actions.fetchContactsError]: () => false,
+});
+const errorReducer = createReducer(null, {
+  [actions.fetchContactsRequest]: () => null,
+  [actions.fetchContactsError]: (_, { payload }) => payload,
+});
 
-// const itemsReducer = (store = initialStore, { type, payload }) => {
-//   switch (type) {
-//     case addContact.type:
-//       return [payload, ...store];
-//     case delContact.type:
-//       return store.filter(item => item.id !== payload);
-//     default:
-//       return store;
-//   }
+const contactsReducer = combineReducers({
+  items: itemsReducer,
+  loading: loadingReducer,
+  error: errorReducer,
+});
+
+// const initialStore = {
+//   items: [],
+//   loading: false,
+//   error: null,
 // };
-// export default itemsReducer;
+// const contactsReducer = createReducer(initialStore, {
+//   [actions.fetchContactsRequest]: store => {
+//     store.loading = true;
+//   },
+//   [actions.fetchContactsSucces]: (store, { payload }) => {
+//     store.items = payload;
+//     store.loading = true;
+//   },
+//   [actions.addContactError]: store => {
+//     store.error = error;
+//     sessionStorage.loading = false;
+//   },
+// });
+
+export default contactsReducer;

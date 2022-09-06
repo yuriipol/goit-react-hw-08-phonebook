@@ -5,10 +5,10 @@ const PhoneBookList = ({ phoneList, onDeletePhoneListItem }) => {
   // console.log(phoneList);
   return (
     <ul className={s.list}>
-      {phoneList.map(({ id, name, number }) => (
+      {phoneList.map(({ id, name, phone }) => (
         <li key={id} className={s.phoneBookListItem}>
           <p className={s.nameText}>{name}</p>
-          <p className={s.phoneNumber}>{number}</p>
+          <p className={s.phoneNumber}>{phone}</p>
           <button
             className={s.buttonDelete}
             onClick={() => onDeletePhoneListItem(id)}
@@ -28,7 +28,7 @@ PhoneBookList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     })
   ),
   onDeletePhoneListItem: PropTypes.func,

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import itemsReducer from './items/phone-book-items-reducer';
+import contactsReducer from './items/phone-book-items-reducer';
 import filterReducer from './filter/phoneBookFilter-reducer';
 
 const rootReducer = combineReducers({
-  items: itemsReducer,
+  contacts: contactsReducer,
   filter: filterReducer,
 });
 

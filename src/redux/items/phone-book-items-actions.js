@@ -1,23 +1,13 @@
 import { createAction } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
-// import { ADD_CONTACT, DEL_CONTACT } from './phone-book-items-types';
 
-export const addContact = createAction('phoneBook/addContact', data => {
-  return {
-    payload: { ...data, id: nanoid() },
-  };
-});
-export const delContact = createAction('phoneBook/delContact');
+export const fetchContactsRequest = createAction('contacts/fetch/request');
+export const fetchContactsSucces = createAction('contacts/fetch/succes');
+export const fetchContactsError = createAction('contacts/fetch/error');
 
-// export const addContact = payload => {
-//   return {
-//     type: ADD_CONTACT,
-//     payload: { ...payload, id: nanoid() },
-//   };
-// };
-// export const delContact = payload => {
-//   return {
-//     type: DEL_CONTACT,
-//     payload,
-//   };
-// };
+export const addContactRequest = createAction('contacts/add/request');
+export const addContactSucces = createAction('contacts/add/succes');
+export const addContactError = createAction('contacts/add/error');
+
+export const delContactRequest = createAction('contacts/del/request');
+export const delContactSucces = createAction('contacts/del/succes');
+export const delContactError = createAction('contacts/del/succes');
