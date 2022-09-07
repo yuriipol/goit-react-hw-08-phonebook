@@ -4,15 +4,22 @@ import * as actions from './phone-book-items-actions';
 
 const itemsReducer = createReducer([], {
   [actions.fetchContactsSucces]: (_, { payload }) => payload,
+  [actions.delContactSucces]: (store, { payload }) =>
+    store.filter(item => item.id !== payload),
 });
 const loadingReducer = createReducer(false, {
   [actions.fetchContactsRequest]: () => true,
   [actions.fetchContactsSucces]: () => false,
   [actions.fetchContactsError]: () => false,
+  [actions.delContactRequest]: () => true,
+  [actions.delContactSucces]: () => false,
+  [actions.delContactError]: () => false,
 });
 const errorReducer = createReducer(null, {
   [actions.fetchContactsRequest]: () => null,
   [actions.fetchContactsError]: (_, { payload }) => payload,
+  [actions.delContactRequest]: () => null,
+  [actions.delContactError]: (_, { payload }) => payload,
 });
 
 const contactsReducer = combineReducers({

@@ -8,7 +8,10 @@ import { useSelector, useDispatch } from 'react-redux';
 //   addContact,
 //   delContact,
 // } from '../redux/items/phone-book-items-actions';
-import { fetchContacts } from 'redux/items/phone-book-items-operations';
+import {
+  fetchContacts,
+  deleteContacts,
+} from 'redux/items/phone-book-items-operations';
 import { addFilter } from 'redux/filter/phoneBookFilter-actions';
 import { getContactsList } from '../redux/items/phone-book-items-selector';
 import { getFilter } from '../redux/filter/phoneBookFilter-selector';
@@ -41,10 +44,10 @@ function App() {
   //   const action = addContact(data);
   //   dispatch(action);
   // };
-  // const onDelContact = id => {
-  //   const action = delContact(id);
-  //   dispatch(action);
-  // };
+  const onDelContact = id => {
+    const action = deleteContacts(id);
+    dispatch(action);
+  };
 
   const onChangeFilter = event => {
     const action = addFilter(event.currentTarget.value);
@@ -65,7 +68,7 @@ function App() {
       {loading && <p>...Loading</p>}
       <PhoneBookList
         phoneList={phoneList}
-        // onDeletePhoneListItem={onDelContact}
+        onDeletePhoneListItem={onDelContact}
       />
     </>
   );

@@ -8,3 +8,8 @@ export const getContacts = async () => {
   const { data } = await instance.get('/');
   return data;
 };
+
+export const delContacts = async id => {
+  const { data } = await instance.delete(`/${id}`);
+  return data;
+};
