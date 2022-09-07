@@ -13,3 +13,8 @@ export const delContacts = async id => {
   const { data } = await instance.delete(`/${id}`);
   return data;
 };
+
+export const addContacts = async data => {
+  const { data: result } = await instance.post('/', data);
+  return result;
+};

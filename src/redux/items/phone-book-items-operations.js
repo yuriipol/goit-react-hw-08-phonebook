@@ -1,4 +1,4 @@
-import { getContacts, delContacts } from '../../shared/api';
+import { getContacts, delContacts, addContacts } from '../../shared/api';
 import * as actions from './phone-book-items-actions';
 
 export const fetchContacts = () => {
@@ -22,6 +22,28 @@ export const deleteContacts = id => {
       dispatch(actions.delContactSucces(data.id));
     } catch (error) {
       dispatch(actions.delContactError(error));
+    }
+  };
+  return func;
+};
+
+export const addItems = data => {
+  const func = async (dispatch, getState) => {
+    const { contacts } = getState();
+    const isDublicate = contacts.items.find(
+      item => item.name === data.name || item.phone === data.phone
+    );
+    if (isDublicate) {
+      return alert(
+        `Name Such ${data.name} or phone ${data.phone} is already in the phone book!`
+      );
+    }
+    dispatch(actions.addContactRequest);
+    try {
+      const result = await addContacts(data);
+      dispatch(actions.addContactSucces(result));
+    } catch (error) {
+      dispatch(actions.addContactError(error));
     }
   };
   return func;

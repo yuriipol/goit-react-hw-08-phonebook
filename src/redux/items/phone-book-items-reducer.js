@@ -6,6 +6,7 @@ const itemsReducer = createReducer([], {
   [actions.fetchContactsSucces]: (_, { payload }) => payload,
   [actions.delContactSucces]: (store, { payload }) =>
     store.filter(item => item.id !== payload),
+  [actions.addContactSucces]: (store, { payload }) => [payload, ...store],
 });
 const loadingReducer = createReducer(false, {
   [actions.fetchContactsRequest]: () => true,
@@ -14,12 +15,17 @@ const loadingReducer = createReducer(false, {
   [actions.delContactRequest]: () => true,
   [actions.delContactSucces]: () => false,
   [actions.delContactError]: () => false,
+  [actions.addContactRequest]: () => true,
+  [actions.addContactSucces]: () => false,
+  [actions.addContactError]: () => false,
 });
 const errorReducer = createReducer(null, {
   [actions.fetchContactsRequest]: () => null,
   [actions.fetchContactsError]: (_, { payload }) => payload,
   [actions.delContactRequest]: () => null,
   [actions.delContactError]: (_, { payload }) => payload,
+  [actions.addContactRequest]: () => null,
+  [actions.addContactError]: (_, { payload }) => payload,
 });
 
 const contactsReducer = combineReducers({
