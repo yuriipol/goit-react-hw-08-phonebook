@@ -1,18 +1,30 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getContacts, delContacts, addContacts } from '../../shared/api';
-import * as actions from './phone-book-items-actions';
 
-export const fetchContacts = () => {
-  const func = async dispatch => {
-    dispatch(actions.fetchContactsRequest());
+export const fetchContacts = createAsyncThunk(
+  'contacts',
+  async (_, { rejectWithValue }) => {
     try {
-      const data = await getContacts();
-      dispatch(actions.fetchContactsSucces(data));
+      const result = await getContacts();
+      return result;
     } catch (error) {
-      dispatch(actions.fetchContactsError(error.message));
+      return rejectWithValue(error);
     }
-  };
-  return func;
-};
+  }
+);
+
+// export const fetchContacts = () => {
+//   const func = async dispatch => {
+//     dispatch(actions.fetchContactsRequest());
+//     try {
+//       const data = await getContacts();
+//       dispatch(actions.fetchContactsSucces(data));
+//     } catch (error) {
+//       dispatch(actions.fetchContactsError(error.message));
+//     }
+//   };
+//   return func;
+// };
 
 export const deleteContacts = id => {
   const func = async dispatch => {
