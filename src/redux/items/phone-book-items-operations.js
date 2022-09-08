@@ -8,7 +8,7 @@ export const fetchContacts = () => {
       const data = await getContacts();
       dispatch(actions.fetchContactsSucces(data));
     } catch (error) {
-      dispatch(actions.fetchContactsError(error));
+      dispatch(actions.fetchContactsError(error.message));
     }
   };
   return func;
@@ -21,7 +21,7 @@ export const deleteContacts = id => {
       const data = await delContacts(id);
       dispatch(actions.delContactSucces(data.id));
     } catch (error) {
-      dispatch(actions.delContactError(error));
+      dispatch(actions.delContactError(error.message));
     }
   };
   return func;
@@ -43,7 +43,7 @@ export const addItems = data => {
       const result = await addContacts(data);
       dispatch(actions.addContactSucces(result));
     } catch (error) {
-      dispatch(actions.addContactError(error));
+      dispatch(actions.addContactError(error.message));
     }
   };
   return func;
