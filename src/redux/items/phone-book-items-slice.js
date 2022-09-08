@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from './phone-book-items-operations';
+import {
+  fetchContacts,
+  addItems,
+  deleteContacts,
+} from './phone-book-items-operations';
 
 const initialState = {
   items: [],
@@ -19,6 +23,37 @@ const contactsSlice = createSlice({
     [fetchContacts.fulfilled]: (store, { payload }) => {
       store.items = payload;
       store.loading = false;
+    },
+    [fetchContacts.rejected]: (store, { payload }) => ({
+      ...store,
+      loading: false,
+      error: payload,
+    }),
+    [addItems.pending]: store => ({
+      ...store,
+      loading: true,
+      error: null,
+    }),
+    [addItems.fulfilled]: (store, { payload }) => {
+      store.items.push(payload);
+      store.loading = false;
+    },
+    [addItems.rejected]: (store, { payload }) => ({
+      ...store,
+      loading: false,
+      error: payload,
+    }),
+    [deleteContacts.pending]: store => {
+      store.loading = false;
+      store.error = null;
+    },
+    [deleteContacts.fulfilled]: (store, { payload }) => {
+      store.items = store.items.filter(item => item.id !== payload.id);
+      store.loading = false;
+    },
+    [deleteContacts.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
     },
   },
 });
