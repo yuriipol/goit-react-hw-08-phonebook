@@ -16,3 +16,11 @@ code {
 ul {
   list-style: none;
 }
+.container {
+  padding: 20px;
+  width: 700px;
+  background-color: aquamarine;
+
+  margin-left: auto;
+  margin-right: auto;
+}

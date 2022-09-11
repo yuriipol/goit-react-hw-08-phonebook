@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import PhoneBookList from './PhoneBookList';
 import Form from './Form';
 import Filter from './Filter';
+import Header from './Header';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -45,24 +46,17 @@ function App() {
   };
 
   return (
-    <>
+    <div className="container">
+      <Header />
       <Form onSubmit={onAddContact} />
-
       <Filter value={filter} onChange={onChangeFilter} />
       {loading && <p>...Loading</p>}
       <PhoneBookList
         phoneList={phoneList}
         onDeletePhoneListItem={onDelContact}
       />
-    </>
+    </div>
   );
 }
 
 export default App;
-
-/*
-?? 1. Создай хранилище с configureStore()
-?? 2. Создай действия сохранения и удаления контакта, а также обновления фильтра. Используй функцию createAction().
-?? 3. Создай редюсеры контактов и фильтра. Используй функцию createReducer() или createSlice().
-?? 4. Свяжи React-компоненты с Redux-логикой при помощи хуков бибилиотеки react-redux.
-*/
