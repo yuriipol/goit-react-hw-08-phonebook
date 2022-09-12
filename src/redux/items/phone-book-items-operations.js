@@ -20,7 +20,8 @@ export const addItems = createAsyncThunk(
       const result = await addContacts(data);
       return result;
     } catch (error) {
-      return rejectWithValue(error);
+      const { data, status } = error.response;
+      return rejectWithValue({ data, status });
     }
   },
   {

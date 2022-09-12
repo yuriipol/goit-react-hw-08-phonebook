@@ -38,11 +38,10 @@ const contactsSlice = createSlice({
       store.items.push(payload);
       store.loading = false;
     },
-    [addItems.rejected]: (store, { payload }) => ({
-      ...store,
-      loading: false,
-      error: payload,
-    }),
+    [addItems.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
     [deleteContacts.pending]: store => {
       store.loading = false;
       store.error = null;
