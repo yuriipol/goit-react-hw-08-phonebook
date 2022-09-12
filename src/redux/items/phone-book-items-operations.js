@@ -27,13 +27,9 @@ export const addItems = createAsyncThunk(
   {
     condition: (data, { getState }) => {
       const { contacts } = getState();
-      const isDublicate = contacts.items.find(
-        item => item.name === data.name || item.phone === data.phone
-      );
+      const isDublicate = contacts.items.find(item => item.name === data.name);
       if (isDublicate) {
-        alert(
-          `Name Such ${data.name} or phone ${data.phone} is already in the phone book!`
-        );
+        alert(`Name ${data.name} is already exist in the phone book!`);
         return false;
       }
     },
