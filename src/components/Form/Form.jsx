@@ -30,7 +30,7 @@ function Form({ onSubmit }) {
     event.preventDefault();
     const data = {
       name,
-      phone,
+      number: phone,
     };
 
     onSubmit(data);
