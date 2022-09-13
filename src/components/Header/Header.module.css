@@ -1,9 +1,14 @@
-.header {
+.nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.register {
+  display: flex;
+  align-items: center;
 }
 .headerNav:not(:last-child) {
-  margin-right: 20px;
+  margin-right: 5px;
 }
 .headerNav {
   appearance: none;
