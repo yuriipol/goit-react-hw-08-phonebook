@@ -19,3 +19,9 @@ export const login = async data => {
   setToken(result.token);
   return result;
 };
+
+export const logout = async () => {
+  const { data: result } = await instance.post('/users/logout');
+  setToken('');
+  return result;
+};
