@@ -52,8 +52,8 @@ const Header = () => {
       </header>
       <Suspense fallback={<h1>Loading...</h1>}>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route element={<PublicRoute />}>
-            <Route path="/" element={<Home />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
           </Route>
