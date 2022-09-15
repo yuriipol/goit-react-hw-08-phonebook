@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/842.da68714c.chunk.js","mappings":"2JAQA,UARa,WACX,OACE,gBAAKA,UAAU,aAAf,UACE,wCAGL,C","sources":["components/Home/Home.jsx"],"sourcesContent":["const Home = () => {\n  return (\n    <div className=\"body__home\">\n      <h2>Phone book</h2>\n    </div>\n  );\n};\n\nexport default Home;\n"],"names":["className"],"sourceRoot":""}
