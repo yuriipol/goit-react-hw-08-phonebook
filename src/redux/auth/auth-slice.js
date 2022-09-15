@@ -47,8 +47,7 @@ const authSlice = createSlice({
     [getCurrent.pending]: store => ({ ...store, loading: true, error: null }),
     [getCurrent.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.user = payload.user;
-      store.token = payload.token;
+      store.user = payload;
       store.isLogin = true;
     },
     [getCurrent.rejected]: (store, { payload }) => ({

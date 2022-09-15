@@ -7,7 +7,8 @@ import Header from './Header';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCurrent);
+    dispatch(getCurrent());
+    // console.log('hello');
   }, [dispatch]);
   return (
     <div className="container">
