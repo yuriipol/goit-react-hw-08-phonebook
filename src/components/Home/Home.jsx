@@ -1,7 +1,8 @@
+import s from './Home.module.css';
 const Home = () => {
   return (
-    <div className="body__home">
-      <h2>Phone book</h2>
+    <div className={s.body__home}>
+      <h2 className={s.title}>PHONE BOOK</h2>
     </div>
   );
 };

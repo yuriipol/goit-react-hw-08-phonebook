@@ -13,7 +13,7 @@ const PhoneBookList = ({ phoneList, onDeletePhoneListItem }) => {
             className={s.buttonDelete}
             onClick={() => onDeletePhoneListItem(id)}
           >
-            delete
+            remove
           </button>
         </li>
       ))}

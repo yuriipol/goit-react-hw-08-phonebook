@@ -6,8 +6,14 @@ const Filter = ({ value, onChange }) => {
     <div className={s.filter}>
       <h1 className={s.title}>CONTACTS:</h1>
       <label className={s.label}>
-        Filtr by name:
-        <input type="text" name="name" value={value} onChange={onChange} />
+        FILTER BY NAME:
+        <input
+          type="text"
+          name="name"
+          value={value}
+          onChange={onChange}
+          className={s.input}
+        />
       </label>
     </div>
   );

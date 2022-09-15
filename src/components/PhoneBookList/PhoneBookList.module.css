@@ -9,28 +9,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0;
   padding: 10px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color: aquamarine;
+  /* border: 1px solid white;
+  border-radius: 5px; */
 }
 .nameText,
 .phoneNumber {
-  font-weight: 400;
+  margin: 0;
+  color: white;
+
   font-size: 20px;
+  text-shadow: 1px 1px 5px black;
 }
 
 .buttonDelete {
-  appearance: none;
-  border: 0;
-  border-radius: 5px;
-  color: #fff;
-  background-color: gray;
-  padding: 8px 16px;
-  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid #0066ff;
+  border-radius: 10px;
   cursor: pointer;
+  letter-spacing: 2px;
+  background-image: linear-gradient(
+    to right,
+    #33cc33 0%,
+    #0066ff 51%,
+    #33cc33 100%
+  );
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
 }
 .buttonDelete:hover,
 .buttonDelete:focus {
-  background-color: red;
+  background-position: right center;
+  border-color: white;
 }

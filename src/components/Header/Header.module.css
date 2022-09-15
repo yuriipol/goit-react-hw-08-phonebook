@@ -11,18 +11,29 @@
   margin-right: 5px;
 }
 .headerNav {
-  appearance: none;
-  border: 0;
-  border-radius: 5px;
-  color: #fff;
-  background-color: gray;
-  padding: 8px 16px;
-  font-size: 16px;
-  cursor: pointer;
   text-decoration: none;
+  display: inline-block;
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid #0066ff;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(
+    to right,
+    #33cc33 0%,
+    #0066ff 51%,
+    #33cc33 100%
+  );
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+}
+.headerNav:hover {
+  background-position: right center;
+  border-color: #fff;
 }
 .active {
-  background-color: red;
   color: #fff;
   border-color: #fff;
   font-weight: bold;

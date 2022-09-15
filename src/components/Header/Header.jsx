@@ -7,9 +7,6 @@ import UserMenu from 'components/UserMenu';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Nav from 'react-bootstrap/Nav';
-
 import style from './Header.module.css';
 
 const Home = lazy(() => import('../Home/Home'));

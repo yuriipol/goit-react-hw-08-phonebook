@@ -46,7 +46,6 @@ const ContactsPage = () => {
   };
   return (
     <div>
-      <h2>Contacts page</h2>
       <Form onSubmit={onAddContact} />
       <Filter value={filter} onChange={onChangeFilter} />
       {loading && <p>...Loading</p>}
