@@ -14,7 +14,7 @@ export const fields = {
     name: 'email',
     placeholder: 'input email',
     required: true,
-    type: 'text',
+    type: 'email',
     pattern: '([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})',
     title: 'Please enter correct email',
   },
@@ -23,7 +23,7 @@ export const fields = {
     name: 'password',
     placeholder: 'input password',
     required: true,
-    type: 'text',
+    type: 'password',
     title: 'Please enter correct email',
   },
 };

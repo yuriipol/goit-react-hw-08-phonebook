@@ -3,6 +3,7 @@ import {
   fetchContacts,
   addItems,
   deleteContacts,
+  changeContactsItems,
 } from './phone-book-items-operations';
 
 const initialState = {
@@ -47,11 +48,31 @@ const contactsSlice = createSlice({
       store.error = null;
     },
     [deleteContacts.fulfilled]: (store, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       store.items = store.items.filter(item => item.id !== payload);
       store.loading = false;
     },
     [deleteContacts.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [changeContactsItems.pending]: store => {
+      store.loading = false;
+      store.error = null;
+    },
+    [changeContactsItems.fulfilled]: (store, { payload }) => {
+      // store.items = store.items.map(item =>
+      //   item.id === payload.id ? payload : item
+      // );
+      store.items = store.items.reduce((prevstate, item) => {
+        if (item.id === payload.id) {
+          return [...prevstate, payload];
+        }
+        return [...prevstate, item];
+      }, []);
+      store.loading = false;
+    },
+    [changeContactsItems.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },

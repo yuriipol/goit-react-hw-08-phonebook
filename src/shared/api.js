@@ -19,3 +19,11 @@ export const addContacts = async data => {
   const { data: result } = await instance.post('/contacts', data);
   return result;
 };
+
+export const changeContacts = async data => {
+  await instance.patch(`/contacts/${data.id}`, {
+    name: data.name,
+    number: data.number,
+  });
+  return data;
+};

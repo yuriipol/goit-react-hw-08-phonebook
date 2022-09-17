@@ -1,0 +1,51 @@
+.changeContact {
+  margin-top: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid #0066ff;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(
+    to right,
+    #33cc33 0%,
+    #0066ff 51%,
+    #33cc33 100%
+  );
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+}
+.changeContact:hover {
+  background-position: right center;
+  border-color: white;
+}
+.label {
+  color: white;
+
+  font-size: 20px;
+  text-shadow: 1px 1px 5px black;
+}
+.input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 0 15px;
+  margin-top: 25px;
+  border-width: 0;
+  line-height: 40px;
+  border-radius: 10px;
+  color: white;
+
+  background: rgba(255, 255, 255, 0.2);
+}
+::placeholder {
+  color: white;
+  opacity: 0.8;
+}

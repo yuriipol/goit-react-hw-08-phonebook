@@ -1,12 +1,12 @@
 import s from './PhoneBookList.module.css';
 import PropTypes from 'prop-types';
 
-const PhoneBookList = ({ phoneList, onDeletePhoneListItem }) => {
+const PhoneBookList = ({ phoneList, onDeletePhoneListItem, onClick }) => {
   // console.log(phoneList);
   return (
     <ul className={s.list}>
       {phoneList.map(({ id, name, number }) => (
-        <li key={id} className={s.phoneBookListItem}>
+        <li key={id} id={id} className={s.phoneBookListItem} onClick={onClick}>
           <p className={s.nameText}>{name}</p>
           <p className={s.phoneNumber}>{number}</p>
           <button
